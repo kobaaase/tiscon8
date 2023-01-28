@@ -101,6 +101,17 @@
 <script src="../js/jquery-3.5.1.min.js" th:src="@{/js/jquery-3.5.1.min.js}"></script>
 <script src="../js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
 <script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script>
+  $(function(){
+      $("input").on("keydown", function(e) {
+          if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+              return false;
+          } else {
+              return true;
+          }
+      });
+  });
+</script>
 </body>
 
 </html>

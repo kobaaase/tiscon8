@@ -75,6 +75,7 @@ public class EstimateService {
         // 小数点以下を切り捨てる
         int distanceInt = (int) Math.floor(distance);
 
+
         // 距離当たりの料金を算出する
         int priceForDistance = distanceInt * PRICE_PER_DISTANCE;
 
@@ -99,6 +100,20 @@ public class EstimateService {
         price.setPricePerTruck(pricePerTruck);
         price.setPriceForOptionalService(priceForOptionalService);
      
+        double i = priceForDistance* 1.5 + pricePerTruck* 1.5 + priceForOptionalService
+        ;
+
+        int j = (int)i;
+
+        double a = priceForDistance* 1.2 + pricePerTruck* 1.2 + priceForOptionalService
+        ;
+
+        int b = (int)a;        
+
+        price.setTotalPrice34(j);
+        price.setTotalPrice9(b);
+
+
 
 
         return price;

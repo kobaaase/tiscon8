@@ -6,6 +6,7 @@ import com.tiscon.dao.EstimateDao;
 import com.tiscon.domain.Customer;
 import com.tiscon.domain.CustomerOptionService;
 import com.tiscon.domain.CustomerPackage;
+import com.tiscon.dto.PriceDto;
 import com.tiscon.dto.UserOrderDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -69,7 +70,7 @@ public class EstimateService {
      * @param dto 見積もり依頼情報
      * @return 概算見積もり結果の料金
      */
-    public Integer getPrice(UserOrderDto dto) {
+    public PriceDto getPrice(UserOrderDto dto) {
         double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
         // 小数点以下を切り捨てる
         int distanceInt = (int) Math.floor(distance);
@@ -92,7 +93,15 @@ public class EstimateService {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
 
-        return priceForDistance + pricePerTruck + priceForOptionalService;
+        PriceDto price = new PriceDto();
+        price.setTotalPrice(priceForDistance + pricePerTruck + priceForOptionalService);
+        price.setPriceForDistance(priceForDistance);
+        price.setPricePerTruck(pricePerTruck);
+        price.setPriceForOptionalService(priceForOptionalService);
+     
+
+
+        return price;
     }
 
     /**

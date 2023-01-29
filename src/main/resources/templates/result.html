@@ -20,7 +20,30 @@
     <div class="page-title">概算お見積り結果</div>
     <div class="col-sm-12">
       <div class="text-center">
-        <div class="primary-text"><span th:text="${price}"></span>円</div>
+        <div class="primary-text"><span th:text="${priceDto.totalPrice}"></span>円</div>
+
+        <div class="page-title">〈見積もり内訳〉</div>
+        <table class="table table-bordered">
+        <col span="1" style="background-color: #FFFFFF;">
+        <col span="2" style="background-color: #FFFFFF;">
+        <tbody>
+        <tr>
+          <th style="width: 40%">距離費用</th>
+          <td><span th:text="${priceDto.priceForDistance}"></span>円</td>
+        </tr>
+        <tr>
+          <th>トラック輸送費</th>
+          <td><span th:text="${priceDto.pricePerTruck}"></span>円</td>
+        </tr>
+        <tr>
+          <th>オプション料金（洗濯機）</th>
+          <td><span th:text="${priceDto.priceForOptionalService}"></span>円</td>
+        </tr>
+        </tbody>
+        </table>
+
+        <div class="sub-title">季節によって価格に変動があります。</div>
+
         <button type="submit" name="complete" class="btn btn-primary">詳細見積もり依頼へ</button>
       </div>
       <div class="sub-title">お客様情報</div>
